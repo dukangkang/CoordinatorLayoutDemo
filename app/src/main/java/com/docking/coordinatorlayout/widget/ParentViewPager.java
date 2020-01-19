@@ -7,21 +7,21 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
-public class ScrollViewPager extends ViewPager {
+public class ParentViewPager extends ViewPager {
     // true: 允许滑动， false:禁用滑动
     private boolean isScroll = false;
 
-    public ScrollViewPager(Context context, AttributeSet attrs) {
+    public ParentViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public ScrollViewPager(Context context) {
+    public ParentViewPager(Context context) {
         super(context);
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        Log.d("dkk", "ScrollViewPager onInterceptTouchEvent isScroll = " + isScroll);
+        Log.d("dkk", "ParentViewPager onInterceptTouchEvent isScroll = " + isScroll);
         // 置顶后，交个子View处理
         if (isScroll) {
             return false;
@@ -37,7 +37,7 @@ public class ScrollViewPager extends ViewPager {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        Log.d("dkk", "ScrollViewPager onTouchEvent isScroll = " + isScroll);
+        Log.d("dkk", "ParentViewPager onTouchEvent isScroll = " + isScroll);
         // 置顶后，交个子View处理
         if (isScroll) {
             return false;

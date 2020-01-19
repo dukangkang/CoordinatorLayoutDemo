@@ -5,13 +5,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.docking.coordinatorlayout.anim.AnimActivity;
 import com.docking.coordinatorlayout.coordinatorlayout.demo.R;
 import com.docking.coordinatorlayout.event.TopEvent;
-import com.docking.coordinatorlayout.widget.ScrollViewPager;
+import com.docking.coordinatorlayout.widget.ParentViewPager;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -30,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private List<String> mList = new ArrayList<>();
-    private ScrollViewPager mViewPager = null;
+    private ParentViewPager mViewPager = null;
 
     MainAdapter mAdapter = null;
     private void init() {
@@ -43,12 +42,11 @@ public class MainActivity extends AppCompatActivity {
         mViewPager = this.findViewById(R.id.viewpager);
         mViewPager.setAdapter(mAdapter);
 
-        TextView textView = this.findViewById(R.id.main_title);
-        textView.setOnClickListener(new View.OnClickListener() {
+        this.findViewById(R.id.main_comm_title).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "点击一次", Toast.LENGTH_SHORT).show();
-               startAnimActivity();
+                startAnimActivity();
             }
         });
     }

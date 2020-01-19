@@ -11,24 +11,12 @@
         android:background="@mipmap/main_bg"
         />
 
-
-    <TextView
-        android:id="@+id/main_title"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:text="这是一个标题"
-        android:textColor="#ffffffff"
-        android:gravity="center"
-        android:textSize="17dp"
-        android:textStyle="bold"
-        android:visibility="gone"/>
-
     <com.docking.coordinatorlayout.widget.CommTitle
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/main_comm_title"/>
 
-    <com.docking.coordinatorlayout.widget.ScrollViewPager
+    <com.docking.coordinatorlayout.widget.ParentViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -17,8 +17,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.docking.coordinatorlayout.behavior.AppBarLayoutBehavior;
 import com.docking.coordinatorlayout.coordinatorlayout.demo.R;
+import com.docking.coordinatorlayout.event.ScrollEvent;
 import com.docking.coordinatorlayout.listener.AppBarStateChangeListener;
 import com.docking.coordinatorlayout.widget.ChildViewPager;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -136,6 +139,7 @@ public class WeatherFragment extends Fragment implements View.OnClickListener {
      * 设置是否置顶
      */
     private void gotoTopAndBottom(boolean isTop) {
+        EventBus.getDefault().post(new ScrollEvent(isTop));
         mAppBarLayout.setExpanded(isTop);
     }
 

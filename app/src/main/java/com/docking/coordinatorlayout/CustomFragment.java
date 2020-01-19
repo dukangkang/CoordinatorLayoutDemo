@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.docking.coordinatorlayout.bean.CustomEntity;
 import com.docking.coordinatorlayout.coordinatorlayout.demo.R;
+import com.docking.coordinatorlayout.event.ScrollEvent;
 import com.docking.coordinatorlayout.event.TopEvent;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
@@ -90,5 +91,12 @@ public class CustomFragment extends Fragment {
         Log.w("dkk", "CustomFragment TopEvent event.isTop = " + event.isTop);
 //        mRefreshLayout.setScroll(event.isTop);
 //        mRecyclerView.setScroll(event.isTop);
+        if (mRefreshLayout != null) {
+            mRefreshLayout.setEnableRefresh(event.isTop);
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(ScrollEvent event) {
     }
 }
