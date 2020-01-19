@@ -1,0 +1,94 @@
+package com.docking.coordinatorlayout;
+
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import com.docking.coordinatorlayout.bean.CustomEntity;
+import com.docking.coordinatorlayout.coordinatorlayout.demo.R;
+import com.docking.coordinatorlayout.event.TopEvent;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class CustomFragment extends Fragment {
+
+    private RecyclerView mRecyclerView;
+    private CustomAdapter mCustomAdapter;
+    private SmartRefreshLayout mRefreshLayout;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        init();
+        initListener();
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        super.onCreateView(inflater, container, savedInstanceState);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.custom_fragment, null, false);
+        return view;
+    }
+
+    private void init() {
+        mRefreshLayout = getView().findViewById(R.id.smart_refresh_layout);
+        initRecyclerView();
+    }
+
+    private void initRecyclerView() {
+        List<CustomEntity> list = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            CustomEntity entity = new CustomEntity();
+            entity.title = "标题 " + i;
+            entity.url = "http://dmimg.5054399.com/allimg/pkm/pk/22.jpg";
+            list.add(entity);
+        }
+        mCustomAdapter = new CustomAdapter(getContext(), list);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecyclerView = getView().findViewById(R.id.custom_recyclerview);
+//        mRecyclerView.setNestedScrollingEnabled(false);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setAdapter(mCustomAdapter);
+    }
+
+    private void initListener() {
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(TopEvent event) {
+        Log.w("dkk", "CustomFragment TopEvent event.isTop = " + event.isTop);
+//        mRefreshLayout.setScroll(event.isTop);
+//        mRecyclerView.setScroll(event.isTop);
+    }
+}

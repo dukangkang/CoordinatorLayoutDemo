@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/smart_refresh_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <TextView
+        android:id="@+id/anim_start"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="开始"
+        android:textColor="#ffffff"
+        android:gravity="center" />
+
+    <ImageView
+        android:id="@+id/anim_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/anim_start"
+        android:src="@drawable/img_0"/>
+
+    <ImageView
+        android:id="@+id/anim_image4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/anim_start"
+        android:src="@drawable/img_4"/>
+
+    <ImageView
+        android:id="@+id/anim_image3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/anim_start"
+        android:src="@drawable/img_3"/>
+
+    <ImageView
+        android:id="@+id/anim_image2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/anim_start"
+        android:src="@drawable/img_2"/>
+
+    <ImageView
+        android:id="@+id/anim_image1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/anim_start"
+        android:src="@drawable/img_1"/>
+
+</RelativeLayout>
