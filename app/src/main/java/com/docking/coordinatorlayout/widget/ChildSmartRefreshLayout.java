@@ -31,52 +31,54 @@ public class ChildSmartRefreshLayout extends SmartRefreshLayout {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         Log.w("dkk", "ChildSmartRefreshLayout onInterceptTouchEvent isScroll = " + isScroll);
-        // 置顶后，自己消费事件，反之不处理
-        if (isScroll) {
-            return super.onInterceptTouchEvent(ev);
-        } else {
-//            int action = ev.getAction();
-//            switch (action) {
-//                case MotionEvent.ACTION_DOWN:
-//                    startX = ev.getX();
-//                    startY = ev.getY();
-//                    break;
-//                case MotionEvent.ACTION_MOVE:
-//                    endX = ev.getX();
-//                    endY = ev.getY();
-//                    Log.w("dkk", "### startY x endY = " + startY + "x" + endY);
-//                    if (startY - endY > 5) {
-//                        Log.w("dkk", "### 向上滑动");
-//                    } else if (endY - startY > 5) {
-//                        Log.w("dkk", "### 向下滑动");
-//                    }
-//                    startX = endX;
-//                    startY = endY;
-//                    break;
-//                case MotionEvent.ACTION_UP:
+        return super.onInterceptTouchEvent(ev);
+//        // 置顶后，自己消费事件，反之不处理
+//        if (isScroll) {
+//            return super.onInterceptTouchEvent(ev);
+//        } else {
+////            int action = ev.getAction();
+////            switch (action) {
+////                case MotionEvent.ACTION_DOWN:
+////                    startX = ev.getX();
+////                    startY = ev.getY();
+////                    break;
+////                case MotionEvent.ACTION_MOVE:
 ////                    endX = ev.getX();
 ////                    endY = ev.getY();
-////
-////                    if (startY - endY > 0) {
-////                        Log.w("dkk", "向上滑动");
-////                    } else if (endY - startX > 0) {
-////                        Log.w("dkk", "向下滑动");
+////                    Log.w("dkk", "### startY x endY = " + startY + "x" + endY);
+////                    if (startY - endY > 5) {
+////                        Log.w("dkk", "### 向上滑动");
+////                    } else if (endY - startY > 5) {
+////                        Log.w("dkk", "### 向下滑动");
 ////                    }
-//                    break;
-//            }
-            return false;
-        }
+////                    startX = endX;
+////                    startY = endY;
+////                    break;
+////                case MotionEvent.ACTION_UP:
+//////                    endX = ev.getX();
+//////                    endY = ev.getY();
+//////
+//////                    if (startY - endY > 0) {
+//////                        Log.w("dkk", "向上滑动");
+//////                    } else if (endY - startX > 0) {
+//////                        Log.w("dkk", "向下滑动");
+//////                    }
+////                    break;
+////            }
+//            return false;
+//        }
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         Log.w("dkk", "ChildSmartRefreshLayout onInterceptTouchEvent isScroll = " + isScroll);
         // 置顶后，自己消费事件，反之不处理
-        if (isScroll) {
-            return super.onTouchEvent(ev);
-        } else {
-            return false;
-        }
+//        if (isScroll) {
+//            return super.onTouchEvent(ev);
+//        } else {
+//            return false;
+//        }
+        return super.onTouchEvent(ev);
     }
 
     public void setScroll(boolean isTop) {

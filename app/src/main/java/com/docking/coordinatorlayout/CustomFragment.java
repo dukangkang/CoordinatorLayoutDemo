@@ -14,6 +14,7 @@ import com.docking.coordinatorlayout.bean.CustomEntity;
 import com.docking.coordinatorlayout.coordinatorlayout.demo.R;
 import com.docking.coordinatorlayout.event.ScrollEvent;
 import com.docking.coordinatorlayout.event.TopEvent;
+import com.docking.coordinatorlayout.widget.ChildSmartRefreshLayout;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import org.greenrobot.eventbus.EventBus;
@@ -27,7 +28,7 @@ public class CustomFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private CustomAdapter mCustomAdapter;
-    private SmartRefreshLayout mRefreshLayout;
+    private ChildSmartRefreshLayout mRefreshLayout;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -98,5 +99,6 @@ public class CustomFragment extends Fragment {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(ScrollEvent event) {
+        Log.w("dkk", "CustomFragment ScrollEvent.isScroll = " + event.isScroll);
     }
 }
