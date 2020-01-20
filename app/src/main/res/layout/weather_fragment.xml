@@ -17,8 +17,9 @@
             android:id="@+id/collapsing_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|enterAlwaysCollapsed|exitUntilCollapsed"
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
             app:titleEnabled="true">
+<!--            |enterAlwaysCollapsed|exitUntilCollapsed-->
             <!--            app:contentScrim="#e6e6e6"-->
             <!--            app:layout_scrollFlags="scroll|enterAlwaysCollapsed|exitUntilCollapsed|snap"-->
             <!--            app:statusBarScrim="@android:color/holo_purple"-->

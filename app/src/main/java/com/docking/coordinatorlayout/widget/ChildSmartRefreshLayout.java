@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
-
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 public class ChildSmartRefreshLayout extends SmartRefreshLayout {

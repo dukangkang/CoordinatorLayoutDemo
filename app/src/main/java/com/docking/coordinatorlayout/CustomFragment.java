@@ -15,12 +15,9 @@ import com.docking.coordinatorlayout.coordinatorlayout.demo.R;
 import com.docking.coordinatorlayout.event.ScrollEvent;
 import com.docking.coordinatorlayout.event.TopEvent;
 import com.docking.coordinatorlayout.widget.ChildSmartRefreshLayout;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +26,7 @@ public class CustomFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private CustomAdapter mCustomAdapter;
     private ChildSmartRefreshLayout mRefreshLayout;
+    private LinearLayoutManager layoutManager;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,7 +62,7 @@ public class CustomFragment extends Fragment {
             list.add(entity);
         }
         mCustomAdapter = new CustomAdapter(getContext(), list);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView = getView().findViewById(R.id.custom_recyclerview);
 //        mRecyclerView.setNestedScrollingEnabled(false);
@@ -95,6 +93,9 @@ public class CustomFragment extends Fragment {
         if (mRefreshLayout != null) {
             mRefreshLayout.setEnableRefresh(event.isTop);
         }
+//        layoutManager.setCanScroll(event.isTop);
+        mRecyclerView.stopScroll();
+        mRecyclerView.scrollToPosition(0);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

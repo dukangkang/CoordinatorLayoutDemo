@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -49,8 +50,10 @@ public class RootCoordinatorLayout extends CoordinatorLayout {
 
     @Override
     public boolean onNestedPreFling(View target, float velocityX, float velocityY) {
-        Log.w("dkk", TAG + " onNestedPreFling");
-//        return true;
+        Log.w("dkk", TAG + " onNestedPreFling target = " + target);
+//        if (target instanceof RecyclerView) {
+//            return true;
+//        }
         return super.onNestedPreFling(target, velocityX, velocityY);
     }
 
@@ -62,7 +65,10 @@ public class RootCoordinatorLayout extends CoordinatorLayout {
 
     @Override
     public boolean onNestedFling(View target, float velocityX, float velocityY, boolean consumed) {
-        Log.w("dkk", TAG + " onNestedFling");
+        Log.w("dkk", TAG + " onNestedFling target = " + target + " \n velocityX = " + velocityX + " velocityY = " + velocityY + " consumed = " + consumed);
+
+
         return super.onNestedFling(target, velocityX, velocityY, consumed);
     }
+
 }

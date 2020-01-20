@@ -93,6 +93,7 @@ public class WeatherFragment extends Fragment implements View.OnClickListener {
         mBgIv = getView().findViewById(R.id.weather_bg_iv);
     }
 
+    private boolean canDrag = true;
     AppBarLayout mAppBarLayout = null;
     private void initListener() {
         mBackTv.setOnClickListener(this);
@@ -118,9 +119,20 @@ public class WeatherFragment extends Fragment implements View.OnClickListener {
             public void onVerticalOffset(AppBarLayout appBarLayout, int verticalOffset) {
             }
         });
+
+        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) mAppBarLayout.getLayoutParams();
+        AppBarLayoutBehavior behavior = (AppBarLayoutBehavior) params.getBehavior();
+        behavior.setDragCallback(new AppBarLayout.Behavior.DragCallback() {
+            @Override
+            public boolean canDrag(@NonNull AppBarLayout appBarLayout) {
+                return true;
+            }
+        });
+
     }
 
-    private void stickTop(boolean isTop) {
+    private void stickTop(final boolean isTop) {
+        // 操作信息流置顶
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) mAppBarLayout.getLayoutParams();
         AppBarLayoutBehavior behavior = (AppBarLayoutBehavior) params.getBehavior();
         behavior.setEnableNestedScroll(!isTop);
@@ -130,17 +142,21 @@ public class WeatherFragment extends Fragment implements View.OnClickListener {
 //        if (activity instanceof MainActivity) {
 //            ((MainActivity)activity).setScroll(isTop);
 //        }
-
         mViewPager.setScroll(isTop);
         mAdapter.notifyTop(isTop);
     }
 
     /**
-     * 设置是否置顶
+     * 设置是否展开
      */
-    private void gotoTopAndBottom(boolean isTop) {
-        EventBus.getDefault().post(new ScrollEvent(isTop));
-        mAppBarLayout.setExpanded(isTop);
+    private void gotoTopAndBottom(final boolean isExpanded) {
+        EventBus.getDefault().post(new ScrollEvent(isExpanded));
+        mAppBarLayout.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mAppBarLayout.setExpanded(isExpanded);
+            }
+        }, 50);
     }
 
     @Override

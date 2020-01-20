@@ -3,6 +3,7 @@ package com.docking.coordinatorlayout.behavior;
 import android.content.Context;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -40,7 +41,7 @@ public class AppBarLayoutBehavior extends AppBarLayout.Behavior {
 
     @Override
     public boolean onInterceptTouchEvent(CoordinatorLayout parent, AppBarLayout child, MotionEvent ev) {
-        LogUtil.d(TAG, "onInterceptTouchEvent:" + child.getTotalScrollRange());
+        LogUtil.d("dkk", TAG + " onInterceptTouchEvent:" + child.getTotalScrollRange());
         shouldBlockNestedScroll = isFlinging;
         switch (ev.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
@@ -186,19 +187,25 @@ public class AppBarLayoutBehavior extends AppBarLayout.Behavior {
         LogUtil.d("dkk", TAG + " onNestedScroll: target:" + target.getClass() + " ,"
                 + child.getTotalScrollRange() + " ,dxConsumed:"
                 + dxConsumed + " ,dyConsumed:" + dyConsumed + " " + ",type:" + type);
-        if (!shouldBlockNestedScroll) {
+//        if (!shouldBlockNestedScroll) {
             super.onNestedScroll(coordinatorLayout, child, target, dxConsumed,
                     dyConsumed, dxUnconsumed, dyUnconsumed, type);
-        }
+//        }
     }
 
     @Override
     public void onStopNestedScroll(CoordinatorLayout coordinatorLayout, AppBarLayout abl,
                                    View target, int type) {
-        LogUtil.d("dkk", TAG + "onStopNestedScroll");
+        LogUtil.d("dkk", TAG + " onStopNestedScroll");
         super.onStopNestedScroll(coordinatorLayout, abl, target, type);
         isFlinging = false;
         shouldBlockNestedScroll = false;
+
+        int count = coordinatorLayout.getChildCount();
+        for (int i = 0; i < count; i++) {
+            View view = coordinatorLayout.getChildAt(i);
+            ViewCompat.stopNestedScroll(view);
+        }
     }
 
     private static class LogUtil{
