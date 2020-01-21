@@ -1,6 +1,7 @@
 package com.docking.coordinatorlayout;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,6 +20,7 @@ import com.docking.coordinatorlayout.behavior.AppBarLayoutBehavior;
 import com.docking.coordinatorlayout.coordinatorlayout.demo.R;
 import com.docking.coordinatorlayout.event.ScrollEvent;
 import com.docking.coordinatorlayout.listener.AppBarStateChangeListener;
+import com.docking.coordinatorlayout.tpg.TPGActivity;
 import com.docking.coordinatorlayout.widget.ChildViewPager;
 
 import org.greenrobot.eventbus.EventBus;
@@ -139,8 +141,8 @@ public class WeatherFragment extends Fragment implements View.OnClickListener {
         Log.e("dkk", "----->>> " + "isTop = " + isTop);
         Log.e("dkk", "----->>> " + (isTop?"置顶":"未置顶"));
 //        Activity activity = getActivity();
-//        if (activity instanceof MainActivity) {
-//            ((MainActivity)activity).setScroll(isTop);
+//        if (activity instanceof TPGActivity) {
+//            ((TPGActivity)activity).setScroll(isTop);
 //        }
         mViewPager.setScroll(isTop);
         mAdapter.notifyTop(isTop);
@@ -168,9 +170,18 @@ public class WeatherFragment extends Fragment implements View.OnClickListener {
             gotoTopAndBottom(false);
         } else if (id == mBgBtn.getId()) {
             Toast.makeText(getActivity(), "点击按钮", Toast.LENGTH_SHORT).show();
+//            startTPGActivity();
         } else if (id == mBgIv.getId()) {
             Toast.makeText(getActivity(), "点击图片", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    /**
+     * 该功能不生效
+     */
+    private void startTPGActivity() {
+        Intent intent = new Intent(getContext(), TPGActivity.class);
+        startActivity(intent);
     }
 
 //     mAppBarParams.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);

@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(TopEvent event) {
-        Log.w("dkk", "MainActivity TopEvent event.isTop = " + event.isTop);
+        Log.w("dkk", "TPGActivity TopEvent event.isTop = " + event.isTop);
         mViewPager.setScroll(event.isTop);
     }
 
